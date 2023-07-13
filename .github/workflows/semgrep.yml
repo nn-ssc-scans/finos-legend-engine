@@ -46,4 +46,9 @@ jobs:
       - name: Semgrep Scan  
         run: |
           unzip -o archive.zip
-          semgrep ci
+          semgrep ci --json --output findings.json
+      - name: Upload Findings.JSON 
+        uses: actions/upload-artifact@v3
+        with:
+          name: findings
+          path: findings.json
